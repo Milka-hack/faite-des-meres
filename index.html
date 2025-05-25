@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Site Troll 💩</title>
+<style>
+  body {
+    background: #222;
+    color: #eee;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    padding: 2em;
+  }
+  h1 {
+    font-size: 4em;
+    margin-bottom: 0.2em;
+  }
+  .emoji {
+    font-size: 6em;
+    animation: bounce 1.5s infinite alternate;
+    user-select: none;
+  }
+  .emoji:nth-child(odd) {
+    animation-delay: 0s;
+  }
+  .emoji:nth-child(even) {
+    animation-delay: 0.75s;
+  }
+  @keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-20px); }
+  }
+  video {
+    margin-top: 2em;
+    border: 5px solid #bada55;
+    border-radius: 15px;
+    max-width: 80vw;
+  }
+  footer {
+    margin-top: 3em;
+    font-size: 1.2em;
+    color: #999;
+  }
+</style>
+
+<script>
+  // Redirige vers index2.html après 5 secondes
+  setTimeout(() => {
+    window.location.href = "index2.html";
+  }, 5000);
+</script>
+
+</head>
+<body>
+
+<h1>💩 Bienvenue sur le site troll 💩</h1>
+
+<div>
+  <span class="emoji">💩</span>
+  <span class="emoji">💩</span>
+  <span class="emoji">💩</span>
+  <span class="emoji">💩</span>
+  <span class="emoji">💩</span>
+</div>
+
+<p>Tu t'es fait troller ! 😜</p>
+
+<video controls autoplay muted loop>
+  <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm">
+  Ton navigateur ne supporte pas la vidéo.
+</video>
+
+<footer>💩 Caca power 💩</footer>
+
+</body>
+</html>

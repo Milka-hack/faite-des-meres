@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bonne fête Maman 💐</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap');
+  body {
+    margin: 0; padding: 0;
+    background: linear-gradient(135deg, #ffe0e9, #fff0f5);
+    font-family: 'Open Sans', sans-serif;
+    color: #5a2a27;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+    overflow-x: hidden;
+    position: relative;
+  }
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    margin-bottom: 0.2rem;
+    color: #d94f4f;
+    text-shadow: 2px 2px 5px #f5c6c6;
+    animation: pulse 3s infinite;
+    position: relative;
+    z-index: 10;
+  }
+  @keyframes pulse {
+    0%, 100% { text-shadow: 2px 2px 5px #f5c6c6; color: #d94f4f; }
+    50% { text-shadow: 2px 2px 15px #ff9fa1; color: #ff5c5c; }
+  }
+  img {
+    max-width: 300px;
+    border-radius: 20px;
+    margin: 1rem 0 2rem 0;
+    box-shadow: 0 8px 15px rgba(217, 79, 79, 0.4);
+    transform: rotate(-2deg);
+    transition: transform 0.5s ease;
+    position: relative;
+    z-index: 10;
+  }
+  img:hover {
+    transform: rotate(2deg) scale(1.05);
+    box-shadow: 0 12px 25px rgba(217, 79, 79, 0.6);
+  }
+  p.message {
+    font-size: 1.4rem;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.6;
+    position: relative;
+    z-index: 10;
+  }
+  textarea {
+    width: 100%;
+    max-width: 600px;
+    min-height: 120px;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border: 2px solid #d94f4f;
+    border-radius: 12px;
+    resize: vertical;
+    box-shadow: 0 4px 8px rgba(217, 79, 79, 0.3);
+    position: relative;
+    z-index: 10;
+  }
+  button {
+    background-color: #d94f4f;
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.7rem 1.8rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(217, 79, 79, 0.5);
+    transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 10;
+  }
+  button:hover {
+    background-color: #ff5c5c;
+  }
+  .output {
+    margin-top: 2rem;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #a13a3a;
+    min-height: 3rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Styles pétales */
+  .petale {
+    position: fixed;
+    top: -30px;
+    background: radial-gradient(circle at 50% 50%, #ffb6c1 40%, #ff69b4 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 2px #d94f4f);
+    animation-timing-function: linear;
+    pointer-events: none;
+  }
+
+  /* Animation combinée chute + oscillation */
+  @keyframes petaleTomber {
+    0% {
+      transform: translateY(0) translateX(0) rotate(0deg);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(100vh) translateX(40px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+  <h1>Bonne fête Maman 💐</h1>
+  <img src="fleurs-pour-maman.jpg" alt="Fleurs pour maman" />
+  <p class="message">Écris ici un message spécial pour ta maman :</p>
+  <textarea id="userMessage" placeholder="Je t'aime maman, merci pour tout..."></textarea>
+  <br/>
+  <button onclick="showMessage()">Envoyer</button>
+  <div class="output" id="outputMessage"></div>
+
+  <script>
+    function showMessage() {
+      const msg = document.getElementById('userMessage').value.trim();
+      const output = document.getElementById('outputMessage');
+      if(msg.length === 0) {
+        output.textContent = "Écris un joli message d'abord :)";
+        output.style.color = "#a13a3a";
+      } else {
+        output.textContent = "Ton message a été envoyé avec amour 💖 : " + msg;
+        output.style.color = "#5a2a27";
+      }
+    }
+
+    const nbPetales = 30;
+
+    function createPetale() {
+      const petale = document.createElement('div');
+      petale.classList.add('petale');
+      // taille aléatoire
+      const size = 10 + Math.random() * 15;
+      petale.style.width = size + 'px';
+      petale.style.height = size + 'px';
+      // position horizontale initiale aléatoire
+      petale.style.left = Math.random() * window.innerWidth + 'px';
+      // animation durée aléatoire entre 5 et 10 secondes
+      const duration = 5 + Math.random() * 5;
+      petale.style.animation = `petaleTomber ${duration}s linear infinite`;
+      // décalage aléatoire au démarrage
+      petale.style.animationDelay = (Math.random() * duration) + 's';
+
+      document.body.appendChild(petale);
+
+      // on recrée un pétale quand l'animation se termine (pas utile en infinite, mais pour éviter surcharge on peut le faire au bout d'un moment)
+      setTimeout(() => {
+        petale.remove();
+        createPetale();
+      }, duration * 1000);
+    }
+
+    for(let i=0; i < nbPetales; i++) {
+      createPetale();
+    }
+  </script>
+</body>
+</html>
+
